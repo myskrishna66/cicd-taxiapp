@@ -32,7 +32,7 @@ environment {
                 script {
                     // Run SonarQube analysis
                     sh """
-                    mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.9:sonar \
+                    mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                     -Dsonar.projectKey=taxi-app1234_taxi \
                     -Dsonar.organization=taxi-app1234 \
                     -Dsonar.host.url=https://sonarcloud.io \
@@ -51,7 +51,7 @@ environment {
                           "files": [
                             {
                               "pattern": "/home/ubuntu/jenkins/workspace/taxi-booking/taxi-booking/target/(*)",
-                              "target": "taxi01-libs-release-local/{1}",
+                              "target": "taxiapp1-libs-release-local/{1}",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
