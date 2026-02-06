@@ -1,5 +1,5 @@
 def registry = 'https://taxiappj7.jfrog.io/artifactory'
-def imageName = 'https://taxiappj7.jfrog.io/taxiapp-docker-local/taxiapp'
+def imageName = 'taxiappj7.jfrog.io/taxiapp-docker-local/taxiapp'
 def version   = '1.0.1'
 pipeline {
     agent {
@@ -69,7 +69,7 @@ environment {
       steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
-           app = docker.build(imageName+":"+version)
+           app = docker.build("${imageName}":${version}")
            echo '<--------------- Docker Build Ends --------------->'
         }
       }
@@ -78,7 +78,7 @@ environment {
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'jfrog-cred'){
+                docker.withRegistry(${registry}, 'jfrog-cred'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
